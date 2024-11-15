@@ -11,7 +11,7 @@ function addTask() {
         return;
     }
     const task ={id: Date.now(), text: taskText };
-    addTaskToDom(task);
+    addTaskToDOM(task);
     saveTaskToLocalStorage(task);
 
     taskInput.value ="";
@@ -22,6 +22,11 @@ function addTaskToDOM(task) {
     const listItem = document.createElement("li");
     listItem.className= "task-item";
     listItem.setAttribute("data-id", task.id);
+
+     listItem.innerHTML = ` <span>${task.text}</span>
+     <div> <button class="edit-button" onclick="editTask(${task.id})">Edit</button> 
+     <button class="delete-button" onclick="deleteTask(${task.id})">Delete</button> </div> `; 
+     taskList.appendChild(listItem);
 }
 
 listItem.innerHTML = `
